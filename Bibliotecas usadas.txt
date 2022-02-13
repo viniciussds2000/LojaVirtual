@@ -1,0 +1,5 @@
+React
+React Dom
+Express
+Mysql
+axios
