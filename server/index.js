@@ -14,7 +14,24 @@ const db = mysql.createConnection({
     
 });
 
+app.post("/pedido", (req, res) => {
+    console.log(req.body.clientName)
+    const clientName = req.body.clientName;
+    const cartTotal = req.body.cartTotal;
+
+    db.query("INSERT INTO pedidos(cliente, valor) VALUES (?,?)", [clientName,cartTotal]),
+    (err, result) => {
+        if (err) {
+            console.log(err);
+        } else{
+            res.send("Valores inseridos")
+        }
+    }
+
+});
+
 app.get('/produtos', (req, res) => {
+    console.log("Produtos atualizados")
     db.query("SELECT * FROM produtos ", (err, result) => {
         if (err){
             console.log(err);
