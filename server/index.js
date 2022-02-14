@@ -15,9 +15,8 @@ const db = mysql.createConnection({
 });
 
 app.post("/pedido", (req, res) => {
-    console.log(req.body.clientName)
-    const clientName = req.body.clientName;
-    const cartTotal = req.body.cartTotal;
+    const clientName = req.body.client;
+    const cartTotal = req.body.totalValue;
 
     db.query("INSERT INTO pedidos(cliente, valor) VALUES (?,?)", [clientName,cartTotal]),
     (err, result) => {

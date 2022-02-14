@@ -86,8 +86,8 @@ const [clientName, setClientName] = useState("");
       <input type="submit" className="Buttonproducts" value="Remover" onClick={() => removeFromCart(el)} />
     </div>
   ));
-
   return (
+    
     
     <div className="App">
       <h1>Lojinha</h1>
