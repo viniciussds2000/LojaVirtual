@@ -1,0 +1,32 @@
+CREATE DATABASE lojavirtual;
+
+CREATE TABLE produtos (
+	idproduto INT PRIMARY KEY,
+	nome VARCHAR NOT NULL,
+	descricao VARCHAR NOT NULL,
+	estoque VARCHAR NOT NULL,
+	valor DECIMAL NOT NULL,
+);
+INSERT INTO produtos (nome, descricao, estoque,valor)
+VALUES ('Iphone 13', 'Iphone 13 128gb', '50','7500'),
+('Samsung m32','Samsung m32 128gb 8 de ram', '70', '1300'),
+('Samsung m52','Samsung M52 64gb 4ram','73','1500');
+
+Create TABLE pedidos(
+	idpedidos INT PRIMARY KEY,
+	cliente VARCHAR NOTNULL,
+	valor DECIMAL NOT NULL,
+);
+
+Create TABLE cliente(
+	idcliente INT PRIMARY KEY,
+	nome VARCHAR NOT NULL,
+	email VARCHAR NOT NULL,
+	cpf INT NOT NULL,
+);
+
+
+
+
+
+
