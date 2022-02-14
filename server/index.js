@@ -6,6 +6,7 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 
+//Cria a ligação com o banco de dados
 const db = mysql.createConnection({
     user:"root",
     host: "localhost",
@@ -13,7 +14,7 @@ const db = mysql.createConnection({
     database: "lojavirtual",
     
 });
-
+//Recebe dados do pedido feito no front e guarda os dados do pedido no banco de dados
 app.post("/pedido", (req, res) => {
     const clientName = req.body.client;
     const cartTotal = req.body.totalValue;
@@ -28,7 +29,7 @@ app.post("/pedido", (req, res) => {
     }
 
 });
-
+//Seleciona dados dos produtos no banco de dados e envia para o front
 app.get('/produtos', (req, res) => {
     console.log("Produtos atualizados")
     db.query("SELECT * FROM produtos ", (err, result) => {
@@ -39,8 +40,8 @@ app.get('/produtos', (req, res) => {
         }
     });
 });
-
+//Aviso de quando o server está iniciado
 app.listen(3001, ()=>{
-    console.log("yey, server start");
+    console.log("Server start");
 });
 
