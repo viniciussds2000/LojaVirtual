@@ -1,22 +1,3 @@
-.App {
+.app {
   text-align: center;
-}
-.HeaderRight{
-  text-align: right;
-  
-
-}
-.Headerbuttons{
-  text-align: center;
-
-}
-
-.Listproducts{
-  font-size: 23px;
-  
-}
-
-.Buttonproducts{
-  border-radius: 20px;
-  margin-left: 3%;
 }
