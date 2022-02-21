@@ -10,10 +10,12 @@ const Store = () => {
   const [cartTotal, setCartTotal] = useState(0)
   const [products, setProducts] = useState([])
   const isMounted = useRef(false)
-
+  const [formIsInvalid, setFormIsInvalid] = useState(false)
   // Traz os valores do cache para o carrinho
   useEffect(()=>{
     const cartItems = localStorage.getItem('cartItems')
+
+
     if(cartItems){
       console.log("haviam itens no localstorage")
       console.log(cartItems)
@@ -29,8 +31,9 @@ const Store = () => {
 
 //Traz o valor dos produtos e soma para o valor total
   useEffect(() => {
-    total();
-  }, [cart]);
+    total()
+    checkIfCartHasSomeItem()
+  }, [cart])
 
   const total = () => {
     let totalVal = 0;
@@ -40,16 +43,30 @@ const Store = () => {
     setCartTotal(totalVal);
   };
 
+  const checkIfCartHasSomeItem = () => {
+    if((localStorage.getItem("cartItems")=== "[]") || (localStorage.getItem("cartItems")=== null)){
+      console.log("Carrinho vazio",formIsInvalid)
+      setFormIsInvalid(true)
+    } else {
+      console.log("Carrinho com algo", formIsInvalid)
+      setFormIsInvalid(false)
+    }
+  }
+
+  
+
 
 const [clientName, setClientName] = useState("");
 const [clientEmail, setClientEmail] = useState("");
 const [clientCpf, setClientCpf] = useState("");
 
+
 //Leva os dados do cliente finalizando o pedido para guardar no banco de dados
  const finishCart = () => {
    let purchaseItems = localStorage.getItem('cartItems')
+   
 
-  Axios.post('http://localhost:3001/pedido', {
+  Axios.post('http://localhost:3001/finalizarpedido', {
       client: clientName,
       totalValue: cartTotal,
       clientEmail: clientEmail,
@@ -99,9 +116,8 @@ const [clientCpf, setClientCpf] = useState("");
     </div>
     
   ));
-  //Tudo que é mostrado na tela inicial
   
-  console.log("produtos:",localStorage.getItem("cartItems"))
+  //Tudo que é mostrado na tela inicial
   return (
     
     
@@ -118,14 +134,15 @@ const [clientCpf, setClientCpf] = useState("");
       <form>
         <label>Email:</label> <input onChange={(event) =>{
           setClientEmail(event.target.value);
-        }} type="text"/><br/>
+        }} type="text" maxLength={150}/><br/>
         <label>Nome:</label> <input onChange={(event) =>{
           setClientName(event.target.value);
-        }} type="text"/><br/>
+        }} type="text" maxLength={110}/><br/>
         <label>Cpf:</label> <input onChange={(event) =>{
           setClientCpf(event.target.value);
-        }} type="text"/><br/><br/>
-        <input onClick={finishCart} type="submit" value="Finalizar Pedido"/>
+        }} type="number"  maxLength={13} minLength={11}/><br/><br/>
+        
+        <input onClick={finishCart} disabled={formIsInvalid} id="finishcartbutton" type="submit" value="Finalizar Pedido"/>
       </form>
 
       
