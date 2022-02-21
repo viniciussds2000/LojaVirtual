@@ -55,7 +55,7 @@ const listItems = orders.map((el) => (
       pageToRedirect={"/"}
       buttonName={"Voltar para a loja"}
       />
-      <h3>Todos pedidos {id}</h3>
+      <h3>Todos pedidos</h3>
       <div className="Listproducts">{listItems}</div>
     </div>
   );
