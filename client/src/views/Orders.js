@@ -10,7 +10,7 @@ const Orders = () => {
 //Traz os dados de produtos do banco de dados para o front com o filtro de Id do cliente
 
   useEffect(() => {
-    fetch('http://localhost:3001/verpedido/', requestOptions)
+    fetch('http://localhost:3001/verPedido/', requestOptions)
     .then(response => response.json())
     .then(data => setOrders(data))
 }, []);
@@ -58,6 +58,7 @@ const listItems = orders.map((el) => (
       pageToRedirect={"/"}
       buttonName={"Voltar para a loja"}
       />
+        <h3>Pedidos do cliente #{id}</h3>
       <div className="Listproducts">{listItems}</div>
     </div>
   );

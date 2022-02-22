@@ -106,8 +106,6 @@ app.post('/verPedido', (req, res) => {
 
 //Seleciona dados dos produtos no banco de dados e envia para o front
 app.get('/verpedidos', (req, res) => {
-    const body = req.body.clientidpedido;
-    console.log("body:",body)
     console.log("Pedidos atualizados")
     db.query("SELECT * FROM pedidos",(err, result) => {
         if (err){

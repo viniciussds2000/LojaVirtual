@@ -2,7 +2,7 @@
 import * as React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import Store from "./views/Store";
-import Orders from "./views/Order";
+import Orders from "./views/Orders";
 import Order from "./views/Order";
 import './App.css'
 //Todas rotas necessarias do projeto listadas

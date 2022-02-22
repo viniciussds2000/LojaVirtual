@@ -5,7 +5,7 @@ import Header from "../components/Header";
 
 const Orders = () => {
     const [orders, setOrders] = useState([])
-    const { id } = useParams()
+    
     //Traz os dados de produtos do banco de dados para o front
 
   useEffect(() => {
@@ -13,11 +13,7 @@ const Orders = () => {
     .then(response => response.json())
     .then(data => setOrders(data))
 }, []);
-const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ clientidpedido: id })
-}
+
 //Parse nos produtos que chegam no banco de dados
 const convertProductsToObject = (unparsed) => {
     let parsed = JSON.parse(unparsed);
